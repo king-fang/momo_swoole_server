@@ -1,0 +1,22 @@
+{
+    "name": "fxj/swoole_websocket",
+    "description": "Swoole Websocket Server",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "fxj",
+            "email": "18861470926@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Server\\": "src/Server/"
+        }
+    }
+}
+
+
