@@ -1,5 +1,5 @@
 {
-    "name": "fxj/swoole_websocket",
+    "name": "fxj/swoole_server",
     "description": "Swoole Websocket Server",
     "license": "MIT",
     "authors": [
