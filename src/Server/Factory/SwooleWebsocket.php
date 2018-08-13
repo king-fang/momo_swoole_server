@@ -1,30 +1,31 @@
 <?php
 namespace Server\Factory;
 
-use Server\TmASwooleServer;
 
 class SwooleWebsocket implements ISwooleServer {
 
-    private $option;
-    private $host;
-    private $port;
-    private $callback;
+    private $websocket;
 
-    public function __construct(TmASwooleServer $server)
+    public function swoole_server(string $host, int $port, string $model = null, $sock_type = null)
     {
-        $this->option = $server->getOption();
-        $this->host = $server->getHost();
-        $this->port = $server->getPort();
-        $this->callback = $server->getCallbackObject();
+        $this->websocket = new \swoole_websocket_server($host, $port);
     }
 
-    public function swoole_servers()
+    public function swoole_set(array $option = [])
     {
-        $server = new \swoole_websocket_server($this->host, $this->port);
-        $server->on('open',array($this->callback, 'onOpen'));
-        $server->on('message',array($this->callback, 'onMessage'));
-        $server->on('close',array($this->callback, 'onClose'));
-        $server->start();
-        return true;
+        $this->websocket->set($option);
+    }
+
+
+    public function swoole_on($callback)
+    {
+        $this->websocket->on('open',array($callback, 'onOpen'));
+        $this->websocket->on('message',array($callback, 'onMessage'));
+        $this->websocket->on('close',array($callback, 'onClose'));
+    }
+
+    public function swoole_start()
+    {
+        $this->websocket->start();
     }
 }

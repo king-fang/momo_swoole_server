@@ -2,6 +2,8 @@
 namespace Server;
 
 use Server\Callback\ISwooleCallback;
+use Server\Factory\ISwooleServer;
+use Server\Factory\SwooleCreator;
 use Server\Factory\SwooleTcpFactory;
 use Server\Factory\SwooleUdpFactory;
 use Server\Factory\SwooleWebsocketFactory;
@@ -24,28 +26,19 @@ class TmSwoolerServer extends TmASwooleServer {
     //配置参数
     public function setOption(array $options)
     {
-        return $this->option = $options;
+        $this->option = $options;
     }
 
-    //设置回调
+    //回调
     public function callback(ISwooleCallback $callback)
     {
-        return $this->callback_object = $callback;
+        $this->callback_object = $callback;
     }
 
-    protected function tcpServer()
+    //服务器
+    protected function setServer(SwooleCreator $server)
     {
-        $this->server_factory =new SwooleTcpFactory($this);
-    }
-
-    protected function udpServer()
-    {
-        $this->server_factory =new SwooleUdpFactory($this);
-    }
-
-    protected function websocketServer()
-    {
-        $this->server_factory =new SwooleWebsocketFactory($this);
+        $this->server_factory = $server;
     }
 
     public function getHost()
