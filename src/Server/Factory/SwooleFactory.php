@@ -5,8 +5,11 @@ use Server\TmASwooleServer;
 
 class SwooleFactory extends SwooleCreator{
 
+    //服务器
     protected $server;
+
     protected $tm_aswoole_server;
+
     //参数
     private $options;
     //地址
@@ -34,16 +37,18 @@ class SwooleFactory extends SwooleCreator{
 
     public function createServer()
     {
-        //websocket服务器
         if($this->server instanceof SwooleWebsocket)
         {
+            //websocket服务器
             $this->server->swoole_server($this->host,$this->port);
-            if(!empty($this->options))
-            {
-                $this->server->swoole_set($this->options);
-            }
-            $this->server->swoole_on($this->callback);
-            $this->server->swoole_start();
         }
+        //TCP/UDP服务器
+        $this->server->swoole_server($this->host,$this->port,$this->model,$this->server_type);
+        if(!empty($this->options))
+        {
+            $this->server->swoole_set($this->options);
+        }
+        $this->server->swoole_on($this->callback);
+        $this->server->swoole_start();
     }
 }

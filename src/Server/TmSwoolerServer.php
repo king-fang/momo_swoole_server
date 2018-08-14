@@ -10,7 +10,15 @@ use Server\Factory\SwooleWebsocketFactory;
 
 class TmSwoolerServer extends TmASwooleServer {
 
-    //初始化
+    /**
+     * 初始化
+     * TmSwoolerServer constructor.
+     * @param string $host  IP/域名
+     * @param int $port  端口
+     * @param string $server_type 服务器类型tcp/udp/websocket
+     * @param string $model 运行模式
+     * @throws SwooleServerException
+     */
     public function __construct(string $host = '' ,int $port = 0 ,string $server_type = 'tcp', string $model = 'process')
     {
         if(!in_array($model,array_keys($this->model)) || !in_array($server_type,array_keys($this->server_type)))
@@ -30,7 +38,7 @@ class TmSwoolerServer extends TmASwooleServer {
     }
 
     //回调
-    public function callback(ISwooleCallback $callback)
+    public function callback(string $callback)
     {
         $this->callback_object = $callback;
     }

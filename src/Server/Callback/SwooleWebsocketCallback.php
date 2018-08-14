@@ -3,6 +3,13 @@ namespace Server\Callback;
 //https://wiki.swoole.com/wiki/page/803.html
 class SwooleWebsocketCallback extends SwooleCallback implements ISwooleWebsocketCallback {
 
+    private $server;
+
+    public function __construct($server = null)
+    {
+        $this->server = $server;
+    }
+
     public function onOpen($server, $request){
         echo "server: handshake success with fd{$request->fd}\n";
     }
@@ -14,5 +21,15 @@ class SwooleWebsocketCallback extends SwooleCallback implements ISwooleWebsocket
 
     public function onClose($server,$fd){
         echo "client {$fd} closed\n";
+    }
+
+    public function onRequest(\swoole_http_request $request, \swoole_http_response $response)
+    {
+        $response->end("<h1>Hello Swoole. #".rand(1000, 9999)."</h1>");
+    }
+
+    public function __toString()
+    {
+        return __CLASS__;
     }
 }

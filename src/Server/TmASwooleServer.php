@@ -68,10 +68,10 @@ abstract class TmASwooleServer {
 
     /**
      * 服务器回调对象
-     * @param ISwooleCallback $callback
+     * @param string $callback 回调函数命名空间
      * @return mixed
      */
-    abstract protected function callback(ISwooleCallback $callback);
+    abstract protected function callback(string $callback);
 
     /**
      * TCP/UDP/WEBSOCKET

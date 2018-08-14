@@ -3,18 +3,30 @@ namespace Server\Callback;
 
 class SwooleCallback  implements ISwooleCallback {
 
+    private $server;
+
+    public function __construct($server = null)
+    {
+        $this->server = $server;
+    }
+
     public function onConnect($serv, $fd)
     {
-        // TODO: Implement onConnect() method.
+        echo "Client:Connect.\n";
     }
 
     public function onReceive($serv, $fd, $from_id, $data)
     {
-        // TODO: Implement onReceive() method.
+        $serv->send($fd, 'Swoole: '.$data);
     }
 
     public function onClose($serv, $fd)
     {
-        // TODO: Implement onClose() method.
+        echo "Client: Close.\n";
+    }
+
+    public function __toString()
+    {
+        return __CLASS__;
     }
 }
