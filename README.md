@@ -1,5 +1,5 @@
 # momo_swoole_server
-![Swoole](https://www.swoole.com/static/files/swoole-logo.svg)[Swoole](https://www.swoole.com)
+[Swoole](https://www.swoole.com)
 # websocket/http/tcp/upd
 1. websocket服务器也可以同时作为http服务器，设置了onRequest回调即可,默认开启
 2. 自定义的回调类必须是继承*SwooleCallback*和实现对应的接口
@@ -14,7 +14,7 @@
  * @param string $host  IP/域名
  * @param int $port  端口
  * @param string $server_type 服务器类型tcp/udp/websocket
- * @param string $model 运行模式
+ * @param string $model 运行模式 process|base
  */
 $client = new \Server\TmSwoolerServer('127.0.0.1',9502,'websocket');
 
