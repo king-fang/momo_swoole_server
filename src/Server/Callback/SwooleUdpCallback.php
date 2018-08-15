@@ -1,7 +1,7 @@
 <?php
 namespace Server\Callback;
 
-class SwooleUdpCallback extends SwooleCallback implements ISwooleUdpCallback{
+class SwooleUdpCallback implements ISwooleUdpCallback{
 
     private $server;
 
@@ -16,8 +16,5 @@ class SwooleUdpCallback extends SwooleCallback implements ISwooleUdpCallback{
         var_dump($clientInfo);
     }
 
-    public function __toString()
-    {
-        return __CLASS__;
-    }
+
 }

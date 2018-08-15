@@ -1,7 +1,7 @@
 <?php
 namespace Server\Callback;
 //https://wiki.swoole.com/wiki/page/803.html
-class SwooleWebsocketCallback extends SwooleCallback implements ISwooleWebsocketCallback {
+class SwooleWebsocketCallback  implements ISwooleWebsocketCallback {
 
     private $server;
 
@@ -26,10 +26,5 @@ class SwooleWebsocketCallback extends SwooleCallback implements ISwooleWebsocket
     public function onRequest(\swoole_http_request $request, \swoole_http_response $response)
     {
         $response->end("<h1>Hello Swoole. #".rand(1000, 9999)."</h1>");
-    }
-
-    public function __toString()
-    {
-        return __CLASS__;
     }
 }

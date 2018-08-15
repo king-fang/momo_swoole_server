@@ -24,9 +24,4 @@ class SwooleCallback  implements ISwooleCallback {
     {
         echo "Client: Close.\n";
     }
-
-    public function __toString()
-    {
-        return __CLASS__;
-    }
 }

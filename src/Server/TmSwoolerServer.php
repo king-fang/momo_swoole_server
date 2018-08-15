@@ -40,6 +40,10 @@ class TmSwoolerServer extends TmASwooleServer {
     //回调
     public function callback(string $callback)
     {
+        if(class_exists($callback))
+        {
+            throw new SwooleServerException("{$callback} not found");
+        }
         $this->callback_object = $callback;
     }
 
